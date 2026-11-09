@@ -372,48 +372,55 @@ export default function App() {
           )}
         </main>
 
-        {/* Offline Connectivity Status Pill */}
-        <OfflineIndicator />
+        
+{/* Bottom Mobile Navigation Bar */}
+<nav
+  className={`fixed bottom-0 left-1/2 -translate-x-1/2 z-30 w-full max-w-md backdrop-blur-md border-t px-1 py-2 flex items-stretch justify-between shadow-lg transition-colors duration-200 ${
+    darkMode
+      ? 'bg-[#0f172a]/95 border-slate-800'
+      : 'bg-white/95 border-purple-100/90'
+  }`}
+  style={{ paddingBottom: 'calc(0.5rem + var(--safe-bottom))' }}
+>
+  {navItems.map((item) => {
+    const Icon = item.icon;
+    const isActive = activeTab === item.id;
 
-        {/* Bottom Mobile Navigation Bar */}
-        <nav
-          className={`fixed bottom-0 z-30 w-full max-w-md backdrop-blur-md border-t px-1 py-1.5 flex items-center justify-between shadow-lg transition-colors duration-200 ${
-            darkMode ? 'bg-[#0f172a]/95 border-slate-800' : 'bg-white/95 border-purple-100/90'
+    return (
+      <button
+        key={item.id}
+        onClick={() => {
+          soundFx.playTap();
+          setActiveTab(item.id as typeof activeTab);
+        }}
+        className={`min-w-0 flex-1 flex flex-col items-center justify-center gap-0.5 py-1 px-0 rounded-xl transition-all duration-150 cursor-pointer ${
+          isActive
+            ? 'text-purple-500 font-bold'
+            : darkMode
+            ? 'text-slate-400 hover:text-slate-200 font-medium'
+            : 'text-slate-400 hover:text-slate-600 font-medium'
+        }`}
+      >
+        <div
+          className={`p-1 rounded-xl transition-all ${
+            isActive
+              ? darkMode
+                ? 'bg-purple-900/60 text-purple-300'
+                : 'bg-purple-100 text-purple-700'
+              : ''
           }`}
-          style={{ paddingBottom: 'calc(0.4rem + var(--safe-bottom))' }}
         >
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => {
-                  soundFx.playTap();
-                  setActiveTab(item.id as typeof activeTab);
-                }}
-                className={`flex-1 flex flex-col items-center py-1 px-0.5 rounded-xl transition-all duration-150 cursor-pointer ${
-                  isActive
-                    ? 'text-purple-500 scale-105 font-bold'
-                    : darkMode
-                    ? 'text-slate-400 hover:text-slate-200 font-medium'
-                    : 'text-slate-400 hover:text-slate-600 font-medium'
-                }`}
-              >
-                <div
-                  className={`p-1 rounded-xl transition-all ${
-                    isActive ? (darkMode ? 'bg-purple-900/60 text-purple-300' : 'bg-purple-100 text-purple-700') : ''
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className="text-[9px] tracking-tight mt-0.5 truncate max-w-[50px]">
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
-        </nav>
+          <Icon className="w-5 h-5 shrink-0" />
+        </div>
+
+        <span className="w-full text-center text-[8px] leading-tight tracking-tight whitespace-normal break-words">
+          {item.label}
+        </span>
+      </button>
+    );
+  })}
+</nav>
+
 
         {/* Profile & Settings Modal */}
         {showProfileModal && (
