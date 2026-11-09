@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
-    base: '/LifeSync/',
+    base: '/LifeSync-App/',
 
     plugins: [
       react(),
@@ -24,7 +24,7 @@ export default defineConfig(() => {
         ],
 
         manifest: {
-          id: '/LifeSync/',
+          id: '/LifeSync-App/',
           name: 'LifeSync — Student Well-being App',
           short_name: 'LifeSync',
           description:
@@ -33,24 +33,24 @@ export default defineConfig(() => {
           background_color: '#f8f7ff',
           display: 'standalone',
           orientation: 'portrait-primary',
-          start_url: '/LifeSync/',
-          scope: '/LifeSync/',
+          start_url: '/LifeSync-App/',
+          scope: '/LifeSync-App/',
 
           icons: [
             {
-              src: '/LifeSync/pwa-192x192.png',
+              src: '/LifeSync-App/pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/LifeSync/pwa-512x512.png',
+              src: '/LifeSync-App/pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/LifeSync/pwa-maskable-512x512.png',
+              src: '/LifeSync-App/pwa-maskable-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',
